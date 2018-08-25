@@ -11,12 +11,6 @@ const loaderName = 'vue-auto-tmpl-loader Loader';
 const schema = {
     type: 'object',
     properties: {
-        debug: {
-            type: 'boolean'
-        },
-        useDefault: {
-            type: 'boolean'
-        },
         startTag: {
             type: 'string'
         },
@@ -29,8 +23,6 @@ const schema = {
 
 
 const defaultOptions = {
-    debug: false,
-    useDefault: false,
     startTag: '__{{',
     endTag: '}}__',
 };
@@ -85,11 +77,12 @@ module.exports = function (content) {
 
     this.cacheable();
 
+    // TODO Can we validate options just once? Like onInit?
     let options = loaderUtils.getOptions(this);
     options = Object.assign({}, defaultOptions, options);
     validateOptions(schema, options, loaderName);
 
-    Mustache.tags = [options.startTag,options.endTag];
+    Mustache.tags = [options.startTag, options.endTag];
 
     let resourcePath = path.parse(this.resourcePath);
 
@@ -102,18 +95,21 @@ module.exports = function (content) {
 
         let section = defaultSections[key];
 
-        // TODO extract lang attribute from section if present, to provide customization and use it as extension
-        let regExp = new RegExp('<\\s*' + key + '[^>]*>([\\S\\s]*?)<\\s*\\/\\s*' + key + '>');
         let sectionInfo = processSection(resourcePath, section);
 
         if(sectionInfo.fileExists) {
+            // TODO extract lang attribute from section if present, to provide customization and use it as extension
+            let regExp = new RegExp('<\\s*' + key + '[^>]*>([\\S\\s]*?)<\\s*\\/\\s*' + key + '>');
+
             if(!regExp.test(content)) {
+                // A file is there but .vue does not contain the <section> for this file. Add the default.
                 content += defaultSections[key].src;
             }
             mustacheData.sections[key] = sectionInfo;
         }
     });
 
+    // Replace src attributes with correct filenames.
     let result = Mustache.render(content, mustacheData);
 
     return result;
