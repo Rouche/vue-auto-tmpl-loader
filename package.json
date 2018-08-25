@@ -1,0 +1,32 @@
+{
+  "name": "@rouche/vue-auto-tmpl-loader",
+  "version": "1.0.0",
+  "description": "Automatically load files associated with a vuejs .vue template. Like <template ... /> <script ... /> <style ... /> if they exists.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rouche/vue-auto-tmpl-loader.git"
+  },
+  "keywords": [
+    "Vuejs",
+    "template",
+    "loader",
+    "separation",
+    "different",
+    "files"
+  ],
+  "author": "Jean-Francois Larouche",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rouche/vue-auto-tmpl-loader/issues"
+  },
+  "homepage": "https://github.com/Rouche/vue-auto-tmpl-loader#readme",
+  "dependencies": {
+    "loader-utils": "^1.1.0",
+    "mustache": "^2.3.2",
+    "schema-utils": "^1.0.0"
+  }
+}
