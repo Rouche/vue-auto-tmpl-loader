@@ -62,12 +62,12 @@ config.module
 ### startTag
 
 - type: `string`
-- default: `__{{`
+- default: `'__{{'`
 
 ### endTag
 
 - type: `string`
-- default: `}}__`
+- default: `'}}__'`
 
 Mustache is used to replace the `src` in section. ex: `<script lang="xx" src="__{{{mustacheData.prop}}}__"></section>`
 It is the only template engine that you can customize tags so it does not interfere with vuejs `{{prop}}` that need to be in your final template untouched.
