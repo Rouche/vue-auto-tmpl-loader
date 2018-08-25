@@ -8,7 +8,7 @@ npm install --save-dev @rouche/vue-auto-tmpl-loader
 
 ## Concept
 
-Lets say you want to separate the concern in a .vue template, you always have to put tags in .vue.
+Lets say you want to separate the concern for a .vue template, you have to repeat those lines.
 ```
 <script lang="ts" src="./mycomponent.ts">
 </script>
