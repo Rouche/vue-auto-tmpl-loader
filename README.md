@@ -77,7 +77,7 @@ mustacheData is the object used for `render()`
     let mustacheData = {
         path: (This is a path.parse(resourcePath) of original .vue file)
         sections: {
-		Information for each sections, check in code for easy understanding)
+		(Information for each sections, check in code for easy understanding)
 	}, 
     };
 ```
