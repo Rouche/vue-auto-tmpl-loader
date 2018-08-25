@@ -23,6 +23,17 @@ The only important part is to keep the files along the template with the same na
 │   └── mycomponent.scoped.scss
 ```
 
+## Compatible (and tested) with
+
+- webpack 4
+- vue-cli 3
+- vue-loader
+- vue-template-loader
+- typescript
+- sass-loader
+
+Project with all tests: https://github.com/Rouche/vue-ts-template
+
 ## Webpack Configuration
 
 Add vue-auto-tmpl-loader at 1st position to your webpack configuration.
