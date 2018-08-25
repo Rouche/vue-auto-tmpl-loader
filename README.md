@@ -82,7 +82,33 @@ mustacheData is the object used for `render()`
     };
 ```
 
+TL;DR
+The main use, is to stop having to type those same lines of codes over and over again in .vue files. (or ts files) Like those:
+```
+<template src="template.html">
+</template>
 
+<script lang="ts" src="component.ts">
+</script>
+
+<style scoped lang="scss" src="style.scss">
+</style>
+```
+or
+```
+import WithRender from './helloworld.html?style=./helloworld.scss';
+
+/**
+ * Example for vue-template-loader
+ */
+@WithRender
+@Component
+bla bla
+```
+
+Just put your files in the same directory of your .vue and thats it!
+`@WithRender` is nice https://github.com/ktsn/vue-template-loader
+But you still need to repeat imports in your code. And its prone to copy paste.
 
 ## License
 
