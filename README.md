@@ -83,7 +83,7 @@ mustacheData is the object used for `render()`
 ```
 
 # TL;DR
-The main use, is to stop having to type those same lines of codes over and over again in .vue files. (or ts files) Like those:
+The main use, is to stop having to type those same lines of codes in .vue files. (or ts files) :
 ```
 <template src="template.html">
 </template>
