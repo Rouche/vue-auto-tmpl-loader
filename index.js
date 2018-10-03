@@ -51,7 +51,7 @@ const defaultSections = {
             <style lang="__{{{sections.style.lang}}}__" src="__{{{sections.style.src}}}__">
             </style>`,
         ext: '.scss',
-    }
+    },
 
     styleScoped: {
         lang: 'scss',
