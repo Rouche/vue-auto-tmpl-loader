@@ -55,8 +55,8 @@ const defaultSections = {
 
     styleScoped: {
         lang: 'scss',
-		tag: 'style',
-		attribute: 'scoped',
+        tag: 'style',
+        attribute: 'scoped',
         src: `
             <style scoped lang="__{{{sections.styleScoped.lang}}}__" src="__{{{sections.styleScoped.src}}}__">
             </style>`,
@@ -109,22 +109,22 @@ module.exports = function (content) {
 
         if(sectionInfo.fileExists) {
             // TODO extract lang attribute from section if present, to provide customization and use it as extension
-			let tag = section.tag || key;
+            let tag = section.tag || key;
             let regExp = new RegExp('<\\s*' + tag + '([^>]*)>([\\S\\s]*?)<\\s*\\/\\s*' + tag + '>');
 
-			let exec = regExp.exec(content);
-			let found = false;
+            let exec = regExp.exec(content);
+            let found = false;
             while(exec !== null) {
                 // A file is there but .vue does not contain the <section> for this file. Add the default.
-				if(!section.attribute || exec[1].indexOf(section.attribute) != -1) {
-					found = true;
-					break;
-				}
-				exec = regExp.exec(content);
+                if(!section.attribute || exec[1].indexOf(section.attribute) != -1) {
+                    found = true;
+                    break;
+                }
+                exec = regExp.exec(content);
             }
-			if(!found) {
-				content += section.src;
-			}
+            if(!found) {
+                content += section.src;
+            }
             mustacheData.sections[key] = sectionInfo;
         }
     });
