@@ -48,9 +48,19 @@ const defaultSections = {
     style: {
         lang: 'scss',
         src: `
-            <style scoped lang="__{{{sections.style.lang}}}__" src="__{{{sections.style.src}}}__">
+            <style lang="__{{{sections.style.lang}}}__" src="__{{{sections.style.src}}}__">
             </style>`,
         ext: '.scss',
+    }
+
+    styleScoped: {
+        lang: 'scss',
+		tag: 'style',
+		attribute: 'scoped',
+        src: `
+            <style scoped lang="__{{{sections.style.lang}}}__" src="__{{{sections.style.src}}}__">
+            </style>`,
+        ext: '.scoped.scss',
     }
 };
 
@@ -99,12 +109,22 @@ module.exports = function (content) {
 
         if(sectionInfo.fileExists) {
             // TODO extract lang attribute from section if present, to provide customization and use it as extension
-            let regExp = new RegExp('<\\s*' + key + '[^>]*>([\\S\\s]*?)<\\s*\\/\\s*' + key + '>');
+			let tag = section.tag || key;
+            let regExp = new RegExp('<\\s*' + tag + '([^>]*)>([\\S\\s]*?)<\\s*\\/\\s*' + tag + '>');
 
-            if(!regExp.test(content)) {
+			let exec = regExp.exec(content);
+			let found = false;
+            while(exec !== null) {
                 // A file is there but .vue does not contain the <section> for this file. Add the default.
-                content += defaultSections[key].src;
+				if(!section.attribute || exec[1].indexOf(section.attribute) != -1) {
+					found = true;
+					break;
+				}
+				exec = regExp.exec(content);
             }
+			if(!found) {
+				content += section.src;
+			}
             mustacheData.sections[key] = sectionInfo;
         }
     });
