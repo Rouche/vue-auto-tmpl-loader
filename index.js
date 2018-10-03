@@ -101,12 +101,14 @@ module.exports = function (content) {
         sections: {},
     };
 
+    let contentToAdd = '';
+
     Object.keys(defaultSections).forEach( (key) => {
 
         let section = defaultSections[key];
 
         let sectionInfo = processSection(resourcePath, section);
-
+        
         if(sectionInfo.fileExists) {
             // TODO extract lang attribute from section if present, to provide customization and use it as extension
             let tag = section.tag || key;
@@ -123,14 +125,14 @@ module.exports = function (content) {
                 exec = regExp.exec(content);
             }
             if(!found) {
-                content += section.src;
+                contentToAdd += section.src;
             }
             mustacheData.sections[key] = sectionInfo;
         }
     });
 
     // Replace src attributes with correct filenames.
-    let result = Mustache.render(content, mustacheData);
+    let result = Mustache.render(content + contentToAdd, mustacheData);
 
     return result;
 }
