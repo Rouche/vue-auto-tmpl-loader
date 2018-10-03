@@ -1,6 +1,6 @@
 {
   "name": "@rouche/vue-auto-tmpl-loader",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Automatically load files associated with a vuejs .vue template. Like <template ... /> <script ... /> <style ... /> if they exists.",
   "main": "index.js",
   "scripts": {
