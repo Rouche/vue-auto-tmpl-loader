@@ -110,7 +110,7 @@ module.exports = function (content) {
         if(sectionInfo.fileExists) {
             // TODO extract lang attribute from section if present, to provide customization and use it as extension
             let tag = section.tag || key;
-            let regExp = new RegExp('<\\s*' + tag + '([^>]*)>([\\S\\s]*?)<\\s*\\/\\s*' + tag + '>');
+            let regExp = new RegExp('<\\s*' + tag + '([^>]*)>([\\S\\s]*?)<\\s*\\/\\s*' + tag + '>', 'g');
 
             let exec = regExp.exec(content);
             let found = false;
